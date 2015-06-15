@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+puts "Start seed the database!"
+(1..5).each do |i|
+  g = Group.new(title: "fake title #{i}", description: "fake description #{i}")
+  g.save!
+end

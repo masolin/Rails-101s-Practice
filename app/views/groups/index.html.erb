@@ -1,0 +1,19 @@
+<h1>Welcome to rails 101s practice</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @groups.each do |group| %>
+      <tr>
+        <td><%= group.title %></td>
+        <td><%= group.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
