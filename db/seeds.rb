@@ -7,6 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 puts "Start seed the database!"
 (1..5).each do |i|
-  g = Group.new(title: "fake title #{i}", description: "fake description #{i}")
-  g.save!
+  group = Group.create(title: "fake title #{i}", description: "fake description #{i}")
+  (1..3).each do |j|
+    group.posts.create(content: "fake content #{j}");
+  end
 end
