@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   def create
     @post = @group.posts.new(post_params)
     if @post.save
-      redirect_to @group
+      redirect_to @group, notice: "Post created!"
     else
       render :new
     end
@@ -21,7 +21,7 @@ class PostsController < ApplicationController
   def update
     @post = @group.posts.find(params[:id])
     if @post.update(post_params)
-      redirect_to @group
+      redirect_to @group, notice: "Post updated!"
     else
       render :edit
     end
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
   def destroy
     @post = @group.posts.find(params[:id])
     @post.destroy
-    redirect_to @group
+    redirect_to @group, alert: "Post deleted!"
   end
 
   private
