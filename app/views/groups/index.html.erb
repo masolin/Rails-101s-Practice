@@ -1,19 +1,24 @@
-<h1>Welcome to rails 101s practice</h1>
+<div class="container">
+  <h1>Welcome to rails 101s practice</h1>
+  <%= link_to "New Group", new_group_path, class: "btn btn-primary pull-right" %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @groups.each do |group| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= group.title %></td>
-        <td><%= group.description %></td>
+        <th>Name</th>
+        <th>Description</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @groups.each do |group| %>
+        <tr>
+          <td><%= group.title %></td>
+          <td><%= group.description %></td>
+          <td><%= link_to "Edit", edit_group_path(group) %></td>
+          <td><%= link_to "Delete", group_path(group), method: :delete, data: { confirm: "Are you sure?" } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
