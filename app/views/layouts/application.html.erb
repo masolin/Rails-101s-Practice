@@ -8,8 +8,10 @@
 </head>
 <body>
 <%= render "common/nav" %>
-<%= bootstrap_alert %>
-<%= yield %>
+<div class="container">
+  <%= bootstrap_alert %>
+  <%= yield %>
+</div>
 <%= render "common/footer" %>
 
 </body>

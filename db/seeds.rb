@@ -12,3 +12,4 @@ puts "Start seed the database!"
     group.posts.create(content: "fake content #{j}");
   end
 end
+User.create(email: "test@test.com", password: "12345678", password_confirmation: "12345678")
