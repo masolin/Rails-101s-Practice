@@ -1,10 +1,13 @@
 class GroupsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
     @groups = Group.all
   end
 
   def show
-    @group = Group.find(params[:id])
+    # include user of post to prevent n+1 query
+    @group = Group.includes(posts: :user).find(params[:id])
   end
 
   def edit

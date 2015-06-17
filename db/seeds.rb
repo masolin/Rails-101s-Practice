@@ -6,10 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 puts "Start seed the database!"
+u = User.create(name: "test1", email: "test@test.com", password: "demodemo", password_confirmation: "demodemo")
+
 (1..5).each do |i|
   group = Group.create(title: "fake title #{i}", description: "fake description #{i}")
   (1..3).each do |j|
-    group.posts.create(content: "fake content #{j}");
+    group.posts.create(content: "fake content #{j}", user_id: u.id);
   end
 end
-User.create(name: "test1", email: "test@test.com", password: "demodemo", password_confirmation: "demodemo")

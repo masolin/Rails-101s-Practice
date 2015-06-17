@@ -1,16 +1,18 @@
 class PostsController < ApplicationController
   before_action :find_group
+  before_action :authenticate_user!
 
   def new
     @post = @group.posts.new
   end
 
   def edit
-    @post = @group.posts.find(params[:id])
+    @post = current_user.posts.find(params[:id])
   end
 
   def create
     @post = @group.posts.new(post_params)
+    @post.user = current_user
     if @post.save
       redirect_to @group, notice: "Post created!"
     else
@@ -19,7 +21,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = @group.posts.find(params[:id])
+    @post = current_user.posts.find(params[:id])
     if @post.update(post_params)
       redirect_to @group, notice: "Post updated!"
     else
@@ -28,7 +30,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = @group.posts.find(params[:id])
+    @post = current_user.posts.find(params[:id])
     @post.destroy
     redirect_to @group, alert: "Post deleted!"
   end

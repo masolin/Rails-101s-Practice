@@ -6,17 +6,21 @@
     <thead>
       <tr>
         <th>Content of post</th>
+        <th>Author</th>
       </tr>
     </thead>
     <tbody>
       <% @group.posts.each do |p| %>
         <tr>
           <td><%= p.content %></td>
+          <td><%= p.user.name %></td>
           <td>
-            <div class="btn-group pull-right">
-              <%= link_to "Edit", edit_group_post_path(@group, p), class: "btn btn-info" %>
-              <%= link_to "Delete", group_post_path(@group, p), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
-            </div>
+            <% if is_editable?(p) %>
+              <div class="btn-group pull-right">
+                <%= link_to "Edit", edit_group_post_path(@group, p), class: "btn btn-info" %>
+                <%= link_to "Delete", group_post_path(@group, p), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+              </div>
+            <% end %>
           </td>
         </tr>
       <% end %>
