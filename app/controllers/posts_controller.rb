@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :find_group
+  before_action :member_required, only: [:new, :create, :update, :destroy]
   before_action :authenticate_user!
 
   def new
@@ -42,5 +43,11 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:content)
+  end
+
+  def member_required
+    if !@group.users.include?(current_user)
+      redirect_to @group, alert: "You are not member of group!"
+    end
   end
 end

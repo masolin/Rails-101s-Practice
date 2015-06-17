@@ -15,8 +15,12 @@
         <tr>
           <td><%= link_to group.title, group_path(group) %></td>
           <td><%= group.description %></td>
-          <td><%= link_to "Edit", edit_group_path(group) %></td>
-          <td><%= link_to "Delete", group_path(group), method: :delete, data: { confirm: "Are you sure?" } %></td>
+          <% if has_joined?(group) %>
+            <td><%= link_to "Edit", edit_group_path(group) %></td>
+            <td><%= link_to "Delete", group_path(group), method: :delete, data: { confirm: "Are you sure?" } %></td>
+          <% else %>
+            <td colspan="2"></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

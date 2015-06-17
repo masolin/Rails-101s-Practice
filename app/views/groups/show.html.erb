@@ -1,7 +1,12 @@
 <div class="container">
   <h1><%= @group.title %></h1>
   <p><%= @group.description %></p>
-  <%= link_to "New Post", new_group_post_path(@group), class: "btn btn-primary pull-right" %>
+  <% if has_joined?(@group) %>
+    <%= link_to "Quit Group", quit_group_path(@group), method: :post, class: "btn btn-danger pull-right", data: {confirm: "Are you sure?"} %>
+    <%= link_to "New Post", new_group_post_path(@group), class: "btn btn-primary pull-right" %>
+  <% else %>
+    <%= link_to "Join Group", join_group_path(@group), method: :post, class: "btn btn-primary pull-right" %>
+  <% end %>
   <table class="table">
     <thead>
       <tr>
@@ -15,7 +20,7 @@
           <td><%= p.content %></td>
           <td><%= p.user.name %></td>
           <td>
-            <% if is_editable?(p) %>
+            <% if can_edit?(p) %>
               <div class="btn-group pull-right">
                 <%= link_to "Edit", edit_group_post_path(@group, p), class: "btn btn-info" %>
                 <%= link_to "Delete", group_post_path(@group, p), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
