@@ -1,0 +1,22 @@
+<h1>My Posts</h1>
+<table class="table">
+  <thead>
+    <th>Post Content</th>
+    <th>Group Title</th>
+    <th>Last Update</th>
+    <th>&nbsp;</th>
+  </thead>
+  <tbody>
+    <% @posts.each do |p| %>
+      <tr>
+        <td><%= p.content %></td>
+        <td><%= p.group.title %></td>
+        <td><%= p.updated_at %></td>
+        <td>
+          <%= link_to "Edit", edit_group_post_path(p.group, p), class: "btn btn-primary" %>
+          <%= link_to "Delete", group_post_path(p.group, p), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
