@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root 'groups#index'
 
   resources :groups do
-    resources :posts
+    resources :posts, except: [:show, :index]
     member do
       post "join"
       post "quit"
@@ -16,8 +16,8 @@ Rails.application.routes.draw do
   end
 
   namespace :account do
-    resources :posts
-    resources :groups
+    resources :posts, only: :index
+    resources :groups, only: :index
   end
 
   # Example of regular route:
