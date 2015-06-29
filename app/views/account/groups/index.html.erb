@@ -10,8 +10,8 @@
   <tbody>
     <% @groups.each do |group| %>
       <tr>
-        <td><%= group.title %></td>
-        <td><%= group.description %></td>
+        <td><%= render_group_title(group) %></td>
+        <td><%= render_group_description(group) %></td>
         <td><%= group.posts.size %></td>
         <td><%= group.updated_at %></td>
         <td>

@@ -9,8 +9,8 @@
   <tbody>
     <% @posts.each do |p| %>
       <tr>
-        <td><%= p.content %></td>
-        <td><%= p.group.title %></td>
+        <td><%= render_post_content(p) %></td>
+        <td><%= render_group_title(p.group) %></td>
         <td><%= p.updated_at %></td>
         <td>
           <%= link_to "Edit", edit_group_post_path(p.group, p), class: "btn btn-primary" %>
