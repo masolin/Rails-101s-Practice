@@ -52,3 +52,13 @@ group :development, :test do
   gem 'spring'
 end
 
+group :development do
+  # For rails security check
+  gem 'brakeman', require: false
+
+  # For rails best practices
+  gem 'rails_best_practices', require: false
+
+  # For ruby coding style
+  gem 'rubocop', require: false
+end
