@@ -12,8 +12,10 @@ gem "devise"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
+# use postgre sql for heroku
+gem 'pg'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -62,3 +64,10 @@ group :development do
   # For ruby coding style
   gem 'rubocop', require: false
 end
+
+group :production do
+  # For heroku deploy
+  gem 'rails_12factor'
+end
+
+ruby '2.2.2'
